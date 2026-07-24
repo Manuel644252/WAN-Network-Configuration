@@ -1,1 +1,15 @@
+# Configuração OSPF - MikroTik (R1)
 
+# Criar instância OSPF
+/routing ospf instance add name=ospf1 router-id=1.1.1.1
+
+# Criar área (backbone, area-id 0.0.0.0)
+/routing ospf area add name=ospf1 area-id=0.0.0.0 instance=ospf1
+
+# Anunciar as redes na área ospf1
+/routing ospf network add network=14.20.20.0/30 area=ospf1
+/routing ospf network add network=35.35.35.0/24 area=ospf1
+
+# Verificação
+/routing ospf neighbor print
+/routing ospf route print
